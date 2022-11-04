@@ -1,4 +1,5 @@
-ESTIMATED_COST_PERCENTAGE=12
+ESTIMATED_COST_PERCENTAGE = 12
+ANNUAL_COST_PERCENTAGE = 1
 
 
 def compute_mortgage_payments(principal: float, anual_interest_rate: float, num_years: int) -> float:
@@ -22,3 +23,49 @@ def compute_purchase_costs(purchase_price: float) -> float:
     """
     return ESTIMATED_COST_PERCENTAGE / 100 * purchase_price
 
+
+def compute_anual_cost(purchase_price: float) -> float:
+    """
+    Compute estimated anual cost
+    :param purchase_price
+    :return anual cost
+    """
+    return ANNUAL_COST_PERCENTAGE / 100 * purchase_price
+
+
+def get_initial_investment(purchase_price: float, mortgage_amount: float) -> float:
+    """
+    Compute initial investment
+    :param purchase_price
+    :param mortgage_amount
+    :return initial investment
+    """
+    initial_costs = compute_purchase_costs(purchase_price)
+    return (purchase_price-mortgage_amount) + initial_costs
+
+def get_monthly_costs(purchase_price: float, mortgage_amount: float, anual_interest_rate: float, num_years: int):
+    """
+    Compute monthly costs
+    :param purchase_price
+    :param mortgage_amount
+    :param anual_interest_rate
+    :param num_years
+    :return monthly costs
+    """
+    mortgage_payment = compute_mortgage_payments(
+        principal=mortgage_amount,
+        anual_interest_rate=anual_interest_rate,
+        num_years=num_years
+    )
+    monthly_costs = compute_anual_cost(purchase_price=purchase_price) / 12
+    return mortgage_payment + monthly_costs
+
+mortgage_amount = 90000
+purchase_price = 160000
+interest_rate = 0.03
+num_years = 30
+
+initial_investment = get_initial_investment(purchase_price, mortgage_amount)
+monthly_costs = get_monthly_costs(purchase_price, mortgage_amount, interest_rate, num_years)
+
+print(f"initial investment: {initial_investment} monthly_costs: {monthly_costs}")
