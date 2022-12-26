@@ -25,6 +25,7 @@ This function returns the initial investment and mortgage amount required for a 
     --monthly_rent 750 \
     --margin 0.45 \
     --mortgage_amount 160000
+
     Initial investment: 80400.0
     Mortgage: 110000.0
     Monthly FCF: 236.0433333333333
