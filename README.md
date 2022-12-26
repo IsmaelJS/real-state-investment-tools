@@ -17,17 +17,16 @@ Edit the variable values in [.env](.env) file.
 This function returns the initial investment and mortgage amount required for a profitable investment taking as inputs the purchase price, loan interest rate, loan duration, expected rent and margin.
 
     make initenv
-    make compute_initial_investment 
+    make compute_initial_investment
     python3 realstate/initial_investment.py \
-     --purchase_price 170000 \
-     --loan_interest_rate 0.04 \
-     --loan_num_years 30 \
-     --monthly_rent 750 \
-     --margin 0.1 \
-     --mortgage_amount 160000
-     
-    Initial investment: 77400.0
-     Mortgage: 113000.0
-     Monthly FCF: 236.0433333333333
-     Monthly cost: 681.1466666666666
-     Mortgage payment: 539.48
+    --purchase_price 170000 \
+    --loan_interest_rate 0.0136 \
+    --loan_num_years 30 \
+    --monthly_rent 750 \
+    --margin 0.45 \
+    --mortgage_amount 160000
+    Initial investment: 80400.0
+    Mortgage: 110000.0
+    Monthly FCF: 236.0433333333333
+    Monthly cost: 513.9566666666667
+    Mortgage payment: 372.29
