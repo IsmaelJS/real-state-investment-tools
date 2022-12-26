@@ -14,7 +14,7 @@ Edit the variable values in [.env](.env) file.
  - **MORTGAGE_AMOUNT**. Mortgage amount. *E.g. 130000*
 ## Using the tools
 ### Compute required initial investment and mortgage
-This function returns the initial investment and mortagage amount required for a profitable investment taking as inputs the purchase price, loan interest rate, loan duration, expected rent and margin.
+This function returns the initial investment and mortgage amount required for a profitable investment taking as inputs the purchase price, loan interest rate, loan duration, expected rent and margin.
 
     make initenv
     make compute_initial_investment 
@@ -28,5 +28,6 @@ This function returns the initial investment and mortagage amount required for a
      
     Initial investment: 77400.0
      Mortgage: 113000.0
+     Monthly FCF: 236.0433333333333
      Monthly cost: 681.1466666666666
      Mortgage payment: 539.48

@@ -1,6 +1,10 @@
 import click
 from utils import (
-    BANK_FINANCING_PERCENTAGE, get_monthly_costs, get_initial_investment, compute_mortgage_payments)
+    BANK_FINANCING_PERCENTAGE,
+    get_monthly_costs,
+    get_initial_investment,
+    compute_mortgage_payments
+)
 
 
 @click.command()
@@ -45,8 +49,13 @@ def _compute_initial_investment(purchase_price: float, loan_interest_rate: float
             anual_interest_rate=loan_interest_rate,
             num_years=loan_num_years
         )
+        monthly_fcf = monthly_rent - monthly_costs
         print(
-            f"Initial investment: {initial_investment} \n Mortgage: {mortgage_amount} \n Monthly cost: {monthly_costs} \n Mortgage payment: {mortgage_payment}")
+            f"Initial investment: {initial_investment} \n"
+            f"Mortgage: {mortgage_amount} \n"
+            f"Monthly FCF: {monthly_fcf} \n"
+            f"Monthly cost: {monthly_costs} \n"
+            f"Mortgage payment: {mortgage_payment}")
     else:
         mortgage_amount = mortgage_amount - 1000
         return _compute_initial_investment(purchase_price, loan_interest_rate, loan_num_years, monthly_rent, margin, mortgage_amount)
