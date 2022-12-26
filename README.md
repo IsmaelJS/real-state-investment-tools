@@ -16,8 +16,11 @@ Edit the variable values in [.env](.env) file.
 ### Compute required initial investment and mortgage
 This function returns the initial investment and mortgage amount required for a profitable investment taking as inputs the purchase price, loan interest rate, loan duration, expected rent and margin.
 
+Input
     make initenv
     make compute_initial_investment
+
+Output
     python3 realstate/initial_investment.py \
     --purchase_price 170000 \
     --loan_interest_rate 0.0136 \
