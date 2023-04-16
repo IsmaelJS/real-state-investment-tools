@@ -3,7 +3,8 @@ ANNUAL_COST_PERCENTAGE = 1
 BANK_FINANCING_PERCENTAGE = 0.8
 
 
-def compute_mortgage_payments(principal: float, anual_interest_rate: float, num_years: int) -> float:
+def compute_mortgage_payments(
+        principal: float, anual_interest_rate: float, num_years: int) -> float:
     """
     Calculates Amortization Amount per month
     :param principal: Principal amount
@@ -25,7 +26,8 @@ def compute_purchase_costs(purchase_price: float) -> float:
     return ESTIMATED_COST_PERCENTAGE / 100 * purchase_price
 
 
-def compute_anual_cost(purchase_price: float, annual_cost_percentage=ANNUAL_COST_PERCENTAGE) -> float:
+def compute_anual_cost(
+        purchase_price: float, annual_cost_percentage=ANNUAL_COST_PERCENTAGE) -> float:
     """
     Compute estimated anual cost
     :param purchase_price
@@ -45,7 +47,9 @@ def get_initial_investment(purchase_price: float, mortgage_amount: float) -> flo
     initial_costs = compute_purchase_costs(purchase_price)
     return (purchase_price-mortgage_amount) + initial_costs
 
-def get_monthly_costs(purchase_price: float, mortgage_amount: float, anual_interest_rate: float, num_years: int):
+
+def get_monthly_costs(
+        purchase_price: float, mortgage_amount: float, anual_interest_rate: float, num_years: int):
     """
     Compute monthly costs
     :param purchase_price
@@ -62,7 +66,10 @@ def get_monthly_costs(purchase_price: float, mortgage_amount: float, anual_inter
     monthly_costs = compute_anual_cost(purchase_price=purchase_price) / 12
     return mortgage_payment + monthly_costs
 
-def compute_initial_investment(purchase_price: float, interest_rate: float, num_years: int, monthly_rent: float, margin: float, mortgage_amount: float = None):
+
+def compute_initial_investment(
+        purchase_price: float, interest_rate: float, num_years: int,
+        monthly_rent: float, margin: float, mortgage_amount: float = None):
     """Compute the needed initial investment to get a profitable investment
 
     Args:
@@ -74,9 +81,12 @@ def compute_initial_investment(purchase_price: float, interest_rate: float, num_
     """
     if mortgage_amount == None:
         mortgage_amount = BANK_FINANCING_PERCENTAGE * purchase_price
-    monthly_costs = get_monthly_costs(purchase_price, mortgage_amount, interest_rate, num_years)
+    monthly_costs = get_monthly_costs(
+        purchase_price, mortgage_amount, interest_rate, num_years)
     if (monthly_rent/monthly_costs) >= (1+margin):
-        return get_initial_investment(purchase_price, mortgage_amount), mortgage_amount, monthly_costs
+        return (get_initial_investment(purchase_price, mortgage_amount),
+                mortgage_amount, monthly_costs)
     else:
         mortgage_amount = mortgage_amount - 1000
-        return compute_initial_investment(purchase_price, interest_rate, num_years, monthly_rent, margin, mortgage_amount)
+        return compute_initial_investment(
+            purchase_price, interest_rate, num_years, monthly_rent, margin, mortgage_amount)

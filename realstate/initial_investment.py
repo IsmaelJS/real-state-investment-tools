@@ -14,7 +14,9 @@ from utils import (
 @click.option('--monthly_rent', help='Expected monthly rent.', type=click.FLOAT)
 @click.option('--margin', help='Expected free cash flow margin', type=click.FLOAT)
 @click.option('--mortgage_amount', help='Mortgage amount.', default=None, type=click.FLOAT)
-def compute_initial_investment(purchase_price: float, loan_interest_rate: float, loan_num_years: int, monthly_rent: float, margin: float, mortgage_amount: float = None):
+def compute_initial_investment(
+        purchase_price: float, loan_interest_rate: float, loan_num_years: int, monthly_rent: float,
+        margin: float, mortgage_amount: float = None):
     """Compute the needed initial investment to get a profitable investment
 
     Args:
@@ -24,10 +26,14 @@ def compute_initial_investment(purchase_price: float, loan_interest_rate: float,
         monthly_rent (float): Expected monthly rent
         margin (float): Expected free cash flow margin
     """
-    return _compute_initial_investment(purchase_price, loan_interest_rate, loan_num_years, monthly_rent, margin, mortgage_amount)
+    return _compute_initial_investment(
+        purchase_price, loan_interest_rate, loan_num_years, monthly_rent, margin, mortgage_amount
+    )
 
 
-def _compute_initial_investment(purchase_price: float, loan_interest_rate: float, loan_num_years: int, monthly_rent: float, margin: float, mortgage_amount: float = None):
+def _compute_initial_investment(
+        purchase_price: float, loan_interest_rate: float, loan_num_years: int,
+        monthly_rent: float, margin: float, mortgage_amount: float = None):
     """Compute the needed initial investment to get a profitable investment
 
     Args:
@@ -58,7 +64,9 @@ def _compute_initial_investment(purchase_price: float, loan_interest_rate: float
             f"Mortgage payment: {mortgage_payment}")
     else:
         mortgage_amount = mortgage_amount - 1000
-        return _compute_initial_investment(purchase_price, loan_interest_rate, loan_num_years, monthly_rent, margin, mortgage_amount)
+        return _compute_initial_investment(
+            purchase_price, loan_interest_rate, loan_num_years,
+            monthly_rent, margin, mortgage_amount)
 
 
 if __name__ == '__main__':
