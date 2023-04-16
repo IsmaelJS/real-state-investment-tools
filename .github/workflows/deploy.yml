@@ -4,7 +4,7 @@ on:
     branches:
       - "main"
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
     branches:
       - "main"
 jobs:
@@ -19,10 +19,14 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: make install
-      - name: autpep8
+      - name: autopep8
+        id: autopep8
         uses: peter-evans/autopep8@v2
         with:
-          args: --recursive --in-place --aggressive --aggressive .
+          args: --exit-code --recursive --in-place --aggressive --aggressive .
+      - name: Fail if autopep8 made changes
+        if: steps.autopep8.outputs.exit-code == 2
+        run: exit 1
       - name: Tests
         run: make test
 
