@@ -32,7 +32,7 @@ def compute_anual_cost(purchase_price: float, annual_cost_percentage=ANNUAL_COST
     :param annual_cost_percentage
     :return anual cost
     """
-    return ANNUAL_COST_PERCENTAGE / 100 * purchase_price
+    return annual_cost_percentage / 100 * purchase_price
 
 
 def get_initial_investment(purchase_price: float, mortgage_amount: float) -> float:

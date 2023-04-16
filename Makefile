@@ -1,6 +1,9 @@
 SHELL := /bin/bash
 include .env
 
+install:
+	pip install -r requirements.txt
+
 initenv: 
 	( \
        source env/bin/activate; \
@@ -15,3 +18,6 @@ compute_initial_investment:
 	 --monthly_rent ${MONTHLY_RENT} \
 	 --margin ${MARGIN} \
 	 --mortgage_amount ${MORTGAGE_AMOUNT}
+
+test:
+	cd realstate && tox
