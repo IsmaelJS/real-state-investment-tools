@@ -7,7 +7,7 @@ on:
     types: [opened, reopened]
     branches:
       - "main"
-jobs: 
+jobs: a
   lint_and_test:
     runs-on: ubuntu-latest
     steps:
