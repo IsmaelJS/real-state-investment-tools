@@ -1,5 +1,12 @@
 name: Test
-on: push
+on: 
+  push:
+    branches:
+      - "main"
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - "main"
 jobs: 
   lint_and_test:
     runs-on: ubuntu-latest
