@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/Checkout@v3
       - name: Install dependencies
-        run: make test
+        run: make install
       - name: Setup python
         uses: actions/setup-python@v4
         with:
