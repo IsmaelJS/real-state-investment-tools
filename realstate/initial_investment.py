@@ -8,7 +8,7 @@ from utils import (
 
 
 @click.command()
-@click.option('--purchase_price', help='Purchase price.', type=click.FLOAT)
+@click.option('--purchase_price', help='Price.', type=click.FLOAT)
 @click.option('--loan_interest_rate',
               help='Loan interest rate.',
               type=click.FLOAT)
