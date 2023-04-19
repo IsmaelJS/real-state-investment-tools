@@ -20,4 +20,4 @@ compute_initial_investment:
 	 --mortgage_amount ${MORTGAGE_AMOUNT}
 
 test:
-	cd realstate && tox
+	. ./.venv/bin/activate && cd realstate && tox
