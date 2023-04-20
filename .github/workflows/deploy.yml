@@ -16,19 +16,14 @@ jobs:
           python-version: '3.10'
       - name: Check cached dependencies
         uses: actions/cache@v3
-        id: cache-venv  # name for referring later
+        id: cache-venv
         with:
-          path: ./.venv/  # what we cache: the virtualenv
-          # The cache key depends on requirements.txt
+          path: ./.venv/
           key: ${{ hashFiles('**/requirements*.txt') }}
-      # Build a virtualenv, but only if it doesn't already exist
       - name: Create venv
         run: python -m venv ./.venv && . ./.venv/bin/activate && 
             pip install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
-      # Run tests
-      # Note that you have to activate the virtualenv in every step
-      # because GitHub actions doesn't preserve the environment
       - name: autopep8
         id: autopep8
         uses: peter-evans/autopep8@v2
@@ -49,22 +44,17 @@ jobs:
           python-version: '3.10'
       - name: Check cached dependencies
         uses: actions/cache@v3
-        id: cache-venv  # name for referring later
+        id: cache-venv
         with:
-          path: ./.venv/  # what we cache: the virtualenv
-          # The cache key depends on requirements.txt
+          path: ./.venv/
           key: ${{ hashFiles('**/requirements*.txt') }}
-      # Build a virtualenv, but only if it doesn't already exist
       - name: Create venv
         run: python -m venv ./.venv && . ./.venv/bin/activate && 
             pip install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
-      # Run tests
-      # Note that you have to activate the virtualenv in every step
-      # because GitHub actions doesn't preserve the environment
       - name: Tests
         run: make test
-
-
-
-
+      - name: Build artifacts
+        uses: actions/upload-artifacts@v3
+        with:
+          path: ./realstate/.tox/my_env/log/
