@@ -53,8 +53,11 @@ jobs:
             pip install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
       - name: Tests
+        id: test
         run: make test
       - name: Build artifacts
+        if: steps.test.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
+          name: output
           path: ./realstate/.tox/my_env/log/
