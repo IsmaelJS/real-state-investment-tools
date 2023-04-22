@@ -1,0 +1,39 @@
+name: Test
+on: 
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - "main"
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+      - name: Build environment
+        uses: ./.github/actions/build-env
+      - name: autopep8
+        id: autopep8
+        uses: peter-evans/autopep8@v2
+        with:
+          args: --exit-code --recursive --in-place --aggressive --aggressive .
+      - name: Fail if autopep8 made changes
+        if: steps.autopep8.outputs.exit-code == 2
+        run: exit 1
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+      - name: Build environment
+        uses: ./.github/actions/build-env
+      - name: Tests
+        id: test
+        run: make test
+      - name: Build artifacts
+        if: steps.test.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: ./realstate/.tox/my_env/log/
