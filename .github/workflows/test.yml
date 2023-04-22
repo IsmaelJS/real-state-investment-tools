@@ -8,8 +8,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: ./.github/actions/checkout-code
+      - name: Checkout
+        uses: actions/Checkout@v3
+      - name: Build environment
+        uses: ./.github/actions/build-env
       - name: autopep8
         id: autopep8
         uses: peter-evans/autopep8@v2
@@ -22,8 +24,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: ./.github/actions/checkout-code
+      - name: Checkout
+        uses: actions/Checkout@v3
+      - name: Build environment
+        uses: ./.github/actions/build-env
       - name: Tests
         id: test
         run: make test

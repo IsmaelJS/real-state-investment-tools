@@ -1,0 +1,20 @@
+name: Checkout code
+description: Checkout code and cache dependencies
+runs:
+  using: composite
+  steps:
+    - name: Setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Check cached dependencies
+      uses: actions/cache@v3
+      id: cache-venv
+      with:
+        path: ./.venv/
+        key: ${{ hashFiles('**/requirements*.txt') }}
+    - name: Create venv
+      shell: bash
+      run: python -m venv ./.venv && . ./.venv/bin/activate && 
+          pip install -r requirements.txt
+      if: steps.cache-venv.outputs.cache-hit != 'true'
