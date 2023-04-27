@@ -1,0 +1,15 @@
+name: Label Pull Request
+on:
+  pull_request:
+    types: [opened]
+    paths: ['.github/**']
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/Checkout@v3
+      - name: Label the pr
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: CI/CD
