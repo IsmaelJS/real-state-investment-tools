@@ -6,7 +6,7 @@ on:
 jobs:
   label-pr:
     permissions:
-      pull-requests: write
+      pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
