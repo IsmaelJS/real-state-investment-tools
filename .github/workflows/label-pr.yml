@@ -5,6 +5,8 @@ on:
     paths: ['.github/**']
 jobs:
   label-pr:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
