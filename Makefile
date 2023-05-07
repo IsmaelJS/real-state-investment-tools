@@ -15,4 +15,4 @@ compute_initial_investment:
 	 --mortgage_amount ${MORTGAGE_AMOUNT}"
 
 test:
-	docker run investment_tools /bin/bash -c "tox"
+	docker run -v $(pwd):/app -w /app/realstate python:3-slim /bin/bash -c "pip install tox==4.4.12 && tox"
